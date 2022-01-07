@@ -95,7 +95,7 @@ def domain_splitter(nodes, elems, c_1, c_2, length_element, GaussPoint_1to4, D_p
         alpha = 0
 
         final_matrix_L = Tip_enrichment.tip_enrichment(L_U, r, theta, alpha, GaussPoint_1to4, D_plane_stress)
-        # print(f"{Nodes_list} is full_tip_enriched")
+        print(f"{Nodes_list} is full_tip_enriched")
         for i in final_matrix_L:
             Tip_matrix_L += i
 
@@ -103,12 +103,13 @@ def domain_splitter(nodes, elems, c_1, c_2, length_element, GaussPoint_1to4, D_p
         Z = list(elems)
         A = ["0tip_enriched", "1tip_enriched", "2tip_enriched", "3tip_enriched"]   #used to define the assignment matrix
 
-        return  Nodes_list, Tip_matrix_L, Z+A
+        plots.extra_dofs(Nodes_list)
+        return  Nodes_list, Tip_matrix_L, Z+A, Nodes_U, Nodes_L, Z
 
     else:
-        return None, None, None
+        return None, None, None, None, None, None
 
-def Crack_length_PP_element_length(nodes, elems, c_1, c_2, crack_length, length_element, v_3,
+def C_length_E_length(nodes, elems, c_1, c_2, crack_length, length_element, v_3,
                                    GaussPoint_1to4, r, theta, alpha, D_plane_stress):
 
     '''
@@ -171,10 +172,9 @@ def Crack_length_PP_element_length(nodes, elems, c_1, c_2, crack_length, length_
 
 
             S1 = Nodes_list[2]
-            S2 = Nodes_list[0]
             V = tuple(v_3)
-            if abs(S1[0] - V[0]) < length_element:
-                # print(f"{Nodes_list} is Mixed_enrichment")
+            if abs(S1[0] - V[0]) <= length_element:
+                print(f"{Nodes_list} is Mixed_enrichment")
                 mixed_matrix = Mixed_enrichment.mixed_enrichment(Nodes_U, Nodes_L, r, theta, alpha,
                                                                       GaussPoint_1to4, D_plane_stress)
 
@@ -182,15 +182,16 @@ def Crack_length_PP_element_length(nodes, elems, c_1, c_2, crack_length, length_
                 # print("mixed elem",Q)
                 B = ["0heaviside_enriched", "1tip_enriched", "2tip_enriched", "3heaviside_enriched"]
 
-                return Nodes_list, mixed_matrix, Q+B
+                return Nodes_list, mixed_matrix, Q+B, Nodes_U, Nodes_L, Q
 
             else:
                 Heavy_matrix = heaviside_enrichment.Heaviside_enrichment(Nodes_L, Nodes_U, GaussPoint_1to4,
                                                                           D_plane_stress)
                 R = list(j)
-                # print("heavy elems", R)
+                print(f"{Nodes_list} is Heavi_enrichment")
                 V = ["0heaviside_enriched", "1heaviside_enriched", "2heaviside_enriched", "3heaviside_enriched"]
-                return Nodes_list, Heavy_matrix, R+V
+
+                return Nodes_list, Heavy_matrix, R+V, Nodes_U, Nodes_L, R
 
 #     =========================================================================
 #     This function splits the length of the crack in equal proportion as
@@ -202,11 +203,23 @@ def Crack_length_PP_element_length(nodes, elems, c_1, c_2, crack_length, length_
 #     +-------------------+------------------+
 #     +                   +                  +
 #     +                   +                  +
-#     @-------------------@----@ ~>crack     +
+#     @------------------(&)----@ ~>crack    +
 #     +                   +                  +
 #     +                   +                  +
 #     +-------------------+------------------+
 #     N_1                 N_2                N_3
-#     For the above illustration, the function outputs "@"-coordinates
+#     For the above illustration, the function outputs "(&)"-coordinates
+
+# sigmaX = randn(16,1);                                       % Create Data
+# sigmaY = randn(16,1);                                       % Create Data
+# sigmaXY = randn(16,1);                                      % Create Data
+# N = 125;                                                    % Grid Resolution
+# xv = linspace(min(sigmaX), max(sigmaX), N);                 % Interpolation Vector
+# yv = linspace(min(sigmaY), max(sigmaY), N);                 % Interpolation Vector
+# [Xm,Ym] = ndgrid(xv, yv);                                   % Create Interpolation Matrices
+# Zm = griddata(sigmaX, sigmaY, sigmaXY, Xm, Ym);             % Interpolate Data
+# figure
+# contourf(Xm, Ym, Zm, 'EdgeColor','none')
+# grid
 
 
