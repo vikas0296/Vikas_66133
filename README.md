@@ -5,25 +5,25 @@ In this program, XFEM and Fracture mechanins have been coupled to analyse the st
 
 The output from the XFEM will be used as the inputs to interaction integral to compute stress intensity factor. Finally, the crack is allowed to propagate. Numerical examples are provided to demonstrate the correctness and robustness of the implemented technique.
 
-## USER MANUAL
+# USER MANUAL
 The following steps should be performed to run the program and test cases. All
 the files are written in python.
 
-1. test Inputs.py : Test cases for input parameters
+1. test_patch.py : The file consists of a)Test case to validate global stiffness matrix
+   and boundary conditions by performing rigid body translation.
+   b)Test case to check Linear Elastic Material Response. c)Test to check Isotropic material property
+   d)Test to check the sanity of Shape functions e)Test to check the sanity of Jacobian matrix
 
-2. test geometry.py : Test cases on shape function and assembly
+2. Test_unit_functions.py: 13 unit tests have been recorded in this file
 
-3. test element routine.py : Test cases on integration scheme and sanity checks
-on other element.
+3. Profiler.py: The file consists of a set of functions to compute the elapsed time. When it runs, it generates 18 additional files with .prof extension.
+   The output if the files.prof is written to log.txt
 
-4. test optimization.py : Test cases on optimizer function OC(optimality cri-
-terion) and MMA(method of moving asymptotes)
+4. main_pgm.py: To start the program, one should run this file. Inputs are already embedded into the function.
 
-5. test rigid body motion.py : Test cases to validate global stiffness matrix
-and boundary conditions by performing rigid body translation and rotation.
+5. 
 
-6. test patch.py : Test cases on constant stress patch test and comparing an-
-alytical solution with numerical for lower and higher order shape functions.
+6. 
 
 To run all the test cases, copy all test files in same folder and enter `PYTEST`
 command on the terminal.
