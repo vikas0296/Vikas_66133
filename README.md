@@ -23,12 +23,11 @@ the files are written in python.
 3. Profiler.py: The file consists of a set of functions to compute the elapsed time. When it runs, it generates 20 additional files with .prof extension.
    The output if the "files.prof" is written to "log.txt"
 
-4. main_pgm.py: To start the program, one should run this file. Inputs are already embedded into the function.
+4. Inputs.py: To start the program, one should run this file. Inputs are already embedded into the function.
 
 5. Piechart.py: In order to execute the Time analysis chart, this file can be used. The data has been collected from the log file
    using bash script 
 
 6. Documents: Here, all the necessary images, screen shots, latex files have been placed. 
 
-To run all the test cases, copy all test files in same folder and enter `PYTEST`
-command on the terminal.
+To run all the test cases, enter `PYTEST` command on the terminal.
