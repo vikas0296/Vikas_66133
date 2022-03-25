@@ -9,7 +9,14 @@ The output from the XFEM will be used as the inputs to interaction integral to c
 The following steps should be performed to run the program and test cases. All
 the files are written in python.
 
-1. test_patch.py : The file consists of 
+1.Inputs.py: To start the program, one should run this file. Inputs are already embedded into the function.
+   
+2. Test_unit_functions.py: 13 unit tests have been recorded in this file
+
+3. Profiler.py: The file consists of a set of functions to compute the elapsed time. When it runs, it generates 20 additional files with .prof extension.
+   The output if the "files.prof" is written to "log.txt"
+
+4.  test_patch.py : The file consists of 
    a)Test case to validate global stiffness matrix and boundary conditions by performing rigid body translation.
    b)Test case to check Linear Elastic Material Response. 
    c)Test to check Isotropic material property.
@@ -17,13 +24,6 @@ the files are written in python.
    e)Test to check the sanity of Jacobian matrix.
    f)Test case to validate global stiffness matrix and boundary conditions by performing rigid body rotation.
    g)Test case to validate global stiffness matrix and boundary conditions by performing rigid body motion.
-   
-2. Test_unit_functions.py: 13 unit tests have been recorded in this file
-
-3. Profiler.py: The file consists of a set of functions to compute the elapsed time. When it runs, it generates 20 additional files with .prof extension.
-   The output if the "files.prof" is written to "log.txt"
-
-4. Inputs.py: To start the program, one should run this file. Inputs are already embedded into the function.
 
 5. Piechart.py: In order to execute the Time analysis chart, this file can be used. The data has been collected from the log file
    using bash script 
