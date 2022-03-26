@@ -25,9 +25,13 @@ the files are written in python.
    f)Test case to validate global stiffness matrix and boundary conditions by performing rigid body rotation.
    g)Test case to validate global stiffness matrix and boundary conditions by performing rigid body motion.
 
-5. Piechart.py: In order to execute the Time analysis chart, this file can be used. The data has been collected from the log file
-   using bash script 
+5. Piechart.py: To analyse the time elapsed by the program, this file can be used. The data is then gathered in a log file
+   and then by bash scripting, one can extract the time and plot the pie chart as shown in the report. 
 
 6. Documents: Here, all the necessary images, screen shots, latex files have been placed. 
+7. Please refer the flow charts. It will given an idea of the program flow
 
-To run all the test cases, enter `PYTEST` command on the terminal.
+Command to run the program: python -c 'import Input; Input.MainFunction()'
+Command to run all the patch tests: pytest -v test_patch.py
+Command to run all the unit tests : pytest -v Test_unit_functions.py
+Command to run time analysis: python Profiler.py 
