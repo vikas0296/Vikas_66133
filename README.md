@@ -9,14 +9,14 @@ The output from the XFEM will be used as the inputs to interaction integral to c
 The following steps should be performed to run the program and test cases. All
 the files are written in python.
 
-1.Inputs.py: To start the program, one should run this file. Inputs are already embedded into the function.
+1. Input.py: To start the program, one should run this file. Inputs are already embedded into the function.
    
 2. Test_unit_functions.py: 13 unit tests have been recorded in this file
 
 3. Profiler.py: The file consists of a set of functions to compute the elapsed time. When it runs, it generates 20 additional files with .prof extension.
    The output if the "files.prof" is written to "log.txt"
 
-4.  test_patch.py : The file consists of 
+4. test_patch.py : The file consists of 
    a)Test case to validate global stiffness matrix and boundary conditions by performing rigid body translation.
    b)Test case to check Linear Elastic Material Response. 
    c)Test to check Isotropic material property.
